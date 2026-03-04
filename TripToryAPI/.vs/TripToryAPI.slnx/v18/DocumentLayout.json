@@ -1,0 +1,275 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|c:\\users\\amoon\\source\\repos\\triptoryapi\\triptoryapi\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|solutionrelative:triptoryapi\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|c:\\users\\amoon\\source\\repos\\triptoryapi\\triptoryapi\\controllers\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|solutionrelative:triptoryapi\\controllers\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|c:\\users\\amoon\\source\\repos\\triptoryapi\\triptoryapi\\controllers\\travelplanscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|solutionrelative:triptoryapi\\controllers\\travelplanscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|c:\\users\\amoon\\source\\repos\\triptoryapi\\triptoryapi\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|solutionrelative:triptoryapi\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|c:\\users\\amoon\\source\\repos\\triptoryapi\\triptoryapi\\models\\media.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|solutionrelative:triptoryapi\\models\\media.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|c:\\users\\amoon\\source\\repos\\triptoryapi\\triptoryapi\\triptoryapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|solutionrelative:triptoryapi\\triptoryapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|c:\\users\\amoon\\source\\repos\\triptoryapi\\triptoryapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|solutionrelative:triptoryapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|c:\\users\\amoon\\source\\repos\\triptoryapi\\triptoryapi\\models\\savedplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|solutionrelative:triptoryapi\\models\\savedplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|c:\\users\\amoon\\source\\repos\\triptoryapi\\triptoryapi\\models\\activity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|solutionrelative:triptoryapi\\models\\activity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|c:\\users\\amoon\\source\\repos\\triptoryapi\\triptoryapi\\models\\planday.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|solutionrelative:triptoryapi\\models\\planday.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|c:\\users\\amoon\\source\\repos\\triptoryapi\\triptoryapi\\models\\recommendation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|solutionrelative:triptoryapi\\models\\recommendation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|c:\\users\\amoon\\source\\repos\\triptoryapi\\triptoryapi\\models\\comment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|solutionrelative:triptoryapi\\models\\comment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|c:\\users\\amoon\\source\\repos\\triptoryapi\\triptoryapi\\models\\travelplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|solutionrelative:triptoryapi\\models\\travelplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|c:\\users\\amoon\\source\\repos\\triptoryapi\\triptoryapi\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|solutionrelative:triptoryapi\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|c:\\users\\amoon\\source\\repos\\triptoryapi\\triptoryapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{282DA9C1-CE2C-22FD-D0CB-36361AC35D23}|TripToryAPI\\TripToryAPI.csproj|solutionrelative:triptoryapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LoginDto.cs",
+              "DocumentMoniker": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\Controllers\\LoginDto.cs",
+              "RelativeDocumentMoniker": "TripToryAPI\\Controllers\\LoginDto.cs",
+              "ToolTip": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\Controllers\\LoginDto.cs",
+              "RelativeToolTip": "TripToryAPI\\Controllers\\LoginDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T16:26:18.021Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TravelPlansController.cs",
+              "DocumentMoniker": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\Controllers\\TravelPlansController.cs",
+              "RelativeDocumentMoniker": "TripToryAPI\\Controllers\\TravelPlansController.cs",
+              "ToolTip": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\Controllers\\TravelPlansController.cs",
+              "RelativeToolTip": "TripToryAPI\\Controllers\\TravelPlansController.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAADwv0AAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T16:12:40.144Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Media.cs",
+              "DocumentMoniker": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\Models\\Media.cs",
+              "RelativeDocumentMoniker": "TripToryAPI\\Models\\Media.cs",
+              "ToolTip": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\Models\\Media.cs",
+              "RelativeToolTip": "TripToryAPI\\Models\\Media.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T16:07:09.164Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "TripToryAPI\\Controllers\\UsersController.cs",
+              "ToolTip": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "TripToryAPI\\Controllers\\UsersController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T18:00:35.261Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "TripToryAPI\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "TripToryAPI\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwBcAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T17:49:56.413Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\Program.cs",
+              "RelativeDocumentMoniker": "TripToryAPI\\Program.cs",
+              "ToolTip": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\Program.cs",
+              "RelativeToolTip": "TripToryAPI\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-26T17:51:43.356Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "TripToryAPI",
+              "DocumentMoniker": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\TripToryAPI.csproj",
+              "RelativeDocumentMoniker": "TripToryAPI\\TripToryAPI.csproj",
+              "ToolTip": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\TripToryAPI.csproj",
+              "RelativeToolTip": "TripToryAPI\\TripToryAPI.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-02-26T16:54:43.845Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PlanDay.cs",
+              "DocumentMoniker": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\Models\\PlanDay.cs",
+              "RelativeDocumentMoniker": "TripToryAPI\\Models\\PlanDay.cs",
+              "ToolTip": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\Models\\PlanDay.cs",
+              "RelativeToolTip": "TripToryAPI\\Models\\PlanDay.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T16:08:28.137Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Activity.cs",
+              "DocumentMoniker": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\Models\\Activity.cs",
+              "RelativeDocumentMoniker": "TripToryAPI\\Models\\Activity.cs",
+              "ToolTip": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\Models\\Activity.cs",
+              "RelativeToolTip": "TripToryAPI\\Models\\Activity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T16:08:56.862Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SavedPlan.cs",
+              "DocumentMoniker": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\Models\\SavedPlan.cs",
+              "RelativeDocumentMoniker": "TripToryAPI\\Models\\SavedPlan.cs",
+              "ToolTip": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\Models\\SavedPlan.cs",
+              "RelativeToolTip": "TripToryAPI\\Models\\SavedPlan.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T16:09:35.762Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Recommendation.cs",
+              "DocumentMoniker": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\Models\\Recommendation.cs",
+              "RelativeDocumentMoniker": "TripToryAPI\\Models\\Recommendation.cs",
+              "ToolTip": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\Models\\Recommendation.cs",
+              "RelativeToolTip": "TripToryAPI\\Models\\Recommendation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T16:06:52.62Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Comment.cs",
+              "DocumentMoniker": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\Models\\Comment.cs",
+              "RelativeDocumentMoniker": "TripToryAPI\\Models\\Comment.cs",
+              "ToolTip": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\Models\\Comment.cs",
+              "RelativeToolTip": "TripToryAPI\\Models\\Comment.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T16:06:10.782Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "TravelPlan.cs",
+              "DocumentMoniker": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\Models\\TravelPlan.cs",
+              "RelativeDocumentMoniker": "TripToryAPI\\Models\\TravelPlan.cs",
+              "ToolTip": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\Models\\TravelPlan.cs",
+              "RelativeToolTip": "TripToryAPI\\Models\\TravelPlan.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T16:05:43.844Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\Models\\User.cs",
+              "RelativeDocumentMoniker": "TripToryAPI\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\Models\\User.cs",
+              "RelativeToolTip": "TripToryAPI\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T16:05:16.425Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\appsettings.json",
+              "RelativeDocumentMoniker": "TripToryAPI\\appsettings.json",
+              "ToolTip": "C:\\Users\\amoon\\source\\repos\\TripToryAPI\\TripToryAPI\\appsettings.json",
+              "RelativeToolTip": "TripToryAPI\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-02-26T17:52:49.476Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+@TripToryAPI_HostAddress = http://localhost:5189
+
+GET {{TripToryAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
