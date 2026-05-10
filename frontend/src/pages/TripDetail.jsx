@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getPlanById, getAllUsers, localPlanDays, localActivities, localComments, localSavedPlans, localRatings, localNotifications } from '../api';
+import { getPlanById, getAllUsers, localPlanDays, localActivities, localComments, localSavedPlans, localRatings, localNotifications, localMedia } from '../api';
 import { useAuth } from '../contexts/AuthContext';
 import { useToast } from '../contexts/ToastContext';
 
@@ -63,6 +63,9 @@ export default function TripDetail() {
   const [commentText, setCommentText] = useState('');
   const [submittingComment, setSubmittingComment] = useState(false);
 
+  const [images, setImages] = useState([]);
+  const [lightbox, setLightbox] = useState(null);
+
   const [userRating, setUserRating] = useState(0);
   const [avgRating, setAvgRating] = useState(0);
   const [isSaved, setIsSaved] = useState(false);
@@ -81,6 +84,7 @@ export default function TripDetail() {
       d.forEach(day => { am[day.day_id] = localActivities.getByDay(day.day_id); });
       setActivitiesMap(am);
       setComments(localComments.getByPlan(planId));
+      setImages(localMedia.getByPlan(planId));
       setAvgRating(localRatings.avgScore(planId));
       if (user) {
         const r = localRatings.getUserRating(user.user_id, planId);
@@ -157,8 +161,15 @@ export default function TripDetail() {
   return (
     <div className="page">
       <div className="container">
-        {/* Hero */}
-        <div className="trip-detail__hero">✈️</div>
+        {/* Hero — first image or emoji fallback */}
+        {images.length > 0 ? (
+          <div className="trip-detail__hero" style={{ padding: 0, overflow: 'hidden', cursor: 'pointer' }} onClick={() => setLightbox(images[0])}>
+            <img src={images[0].file_path} alt={images[0].file_name}
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          </div>
+        ) : (
+          <div className="trip-detail__hero">✈️</div>
+        )}
 
         {/* Title row */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', marginBottom: '2rem' }}>
@@ -187,6 +198,20 @@ export default function TripDetail() {
         <div className="trip-detail__grid">
           {/* Main content */}
           <div>
+            {/* Photo Gallery */}
+            {images.length > 0 && (
+              <div className="info-box" style={{ marginBottom: '1.5rem' }}>
+                <h3 style={{ marginBottom: '1rem' }}>📷 Trip Photos ({images.length})</h3>
+                <div className="photo-gallery">
+                  {images.map((img, idx) => (
+                    <div key={img.media_id} className="photo-gallery__item" onClick={() => setLightbox(img)}>
+                      <img src={img.file_path} alt={img.file_name} className="photo-gallery__img" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Itinerary */}
             <div className="info-box" style={{ marginBottom: '1.5rem' }}>
               <h3>📅 Day-by-Day Itinerary</h3>
@@ -296,6 +321,21 @@ export default function TripDetail() {
           </aside>
         </div>
       </div>
+
+      {/* Lightbox */}
+      {lightbox && (
+        <div className="lightbox" onClick={() => setLightbox(null)}>
+          <button className="lightbox__close" onClick={() => setLightbox(null)}>✕</button>
+          <img src={lightbox.file_path} alt={lightbox.file_name} className="lightbox__img" onClick={e => e.stopPropagation()} />
+          {images.length > 1 && (
+            <div className="lightbox__nav">
+              <button onClick={e => { e.stopPropagation(); const idx = images.findIndex(i => i.media_id === lightbox.media_id); setLightbox(images[(idx - 1 + images.length) % images.length]); }}>‹</button>
+              <span>{images.findIndex(i => i.media_id === lightbox.media_id) + 1} / {images.length}</span>
+              <button onClick={e => { e.stopPropagation(); const idx = images.findIndex(i => i.media_id === lightbox.media_id); setLightbox(images[(idx + 1) % images.length]); }}>›</button>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

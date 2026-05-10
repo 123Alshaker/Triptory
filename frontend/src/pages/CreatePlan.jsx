@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createPlan, localPlanDays, localActivities } from '../api';
+import { createPlan, localPlanDays, localActivities, localMedia } from '../api';
 import { useAuth } from '../contexts/AuthContext';
 import { useToast } from '../contexts/ToastContext';
 
-const STEPS = ['Basic Info', 'Itinerary', 'Review & Publish'];
+const STEPS = ['Basic Info', 'Itinerary', 'Photos', 'Review & Publish'];
 
 function Step1({ form, set }) {
   return (
@@ -69,7 +69,92 @@ function Step2({ days, setDays }) {
   );
 }
 
-function Step3({ form, days }) {
+function Step3Photos({ images, setImages }) {
+  const [dragOver, setDragOver] = useState(false);
+
+  const readFiles = (files) => {
+    Array.from(files).forEach(file => {
+      if (!file.type.startsWith('image/')) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImages(prev => [...prev, { dataUrl: e.target.result, fileName: file.name, size: file.size }]);
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const handleFileInput = (e) => readFiles(e.target.files);
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setDragOver(false);
+    readFiles(e.dataTransfer.files);
+  };
+
+  const removeImage = (idx) => setImages(prev => prev.filter((_, i) => i !== idx));
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+      <div>
+        <p className="text-muted" style={{ fontSize: '0.9rem', marginBottom: '1rem' }}>
+          Upload photos from your trip. These will be displayed in the trip detail page. You can upload multiple images.
+        </p>
+
+        {/* Drop zone */}
+        <label
+          className={`upload-dropzone${dragOver ? ' upload-dropzone--active' : ''}`}
+          onDragOver={e => { e.preventDefault(); setDragOver(true); }}
+          onDragLeave={() => setDragOver(false)}
+          onDrop={handleDrop}
+        >
+          <input
+            type="file"
+            accept="image/*"
+            multiple
+            onChange={handleFileInput}
+            style={{ display: 'none' }}
+          />
+          <div className="upload-dropzone__icon">🖼️</div>
+          <div className="upload-dropzone__text">
+            <strong>Click to upload</strong> or drag and drop images here
+          </div>
+          <div className="upload-dropzone__hint">PNG, JPG, WEBP supported</div>
+        </label>
+      </div>
+
+      {/* Previews */}
+      {images.length > 0 && (
+        <div>
+          <p style={{ fontWeight: 600, marginBottom: '0.75rem', fontSize: '0.9rem' }}>
+            {images.length} image{images.length !== 1 ? 's' : ''} selected
+          </p>
+          <div className="upload-preview-grid">
+            {images.map((img, idx) => (
+              <div key={idx} className="upload-preview-item">
+                <img src={img.dataUrl} alt={img.fileName} className="upload-preview-img" />
+                <button
+                  type="button"
+                  className="upload-preview-remove"
+                  onClick={() => removeImage(idx)}
+                  title="Remove image"
+                >✕</button>
+                <div className="upload-preview-name">{img.fileName}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {images.length === 0 && (
+        <p className="text-muted" style={{ fontSize: '0.85rem' }}>
+          No images uploaded yet. You can skip this step — photos are optional.
+        </p>
+      )}
+    </div>
+  );
+}
+
+function Step4({ form, days, images }) {
   return (
     <div>
       <div className="alert alert--info mb-2">Please review your trip before submitting.</div>
@@ -82,7 +167,7 @@ function Step3({ form, days }) {
           <div><strong>Status:</strong> <span className={`badge ${form.status === 'Published' ? 'badge--green' : 'badge--gray'}`}>{form.status}</span></div>
         </div>
       </div>
-      <div className="info-box">
+      <div className="info-box" style={{ marginBottom: '1rem' }}>
         <h3 style={{ marginBottom: '1rem' }}>Itinerary ({days.length} days)</h3>
         {days.length === 0 ? <p className="text-muted">No days added.</p> : days.map((day, i) => (
           <div key={i} style={{ marginBottom: '0.75rem' }}>
@@ -94,6 +179,19 @@ function Step3({ form, days }) {
               ))}
           </div>
         ))}
+      </div>
+      <div className="info-box">
+        <h3 style={{ marginBottom: '1rem' }}>Photos ({images.length})</h3>
+        {images.length === 0 ? (
+          <p className="text-muted">No photos uploaded.</p>
+        ) : (
+          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+            {images.map((img, i) => (
+              <img key={i} src={img.dataUrl} alt={img.fileName}
+                style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '6px', border: '2px solid var(--border)' }} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -107,6 +205,7 @@ export default function CreatePlan() {
   const [step, setStep] = useState(0);
   const [form, setForm] = useState({ title: '', destination: '', total_price: '', status: 'Draft' });
   const [days, setDays] = useState([]);
+  const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -135,21 +234,25 @@ export default function CreatePlan() {
     if (err) { setError(err); return; }
     setLoading(true);
     try {
-      const planData = {
+      const newPlan = await createPlan({
         title: form.title.trim(),
         destination: form.destination.trim(),
         total_price: parseFloat(form.total_price) || 0,
         status: form.status,
         user_id: user.user_id,
-      };
-      const newPlan = await createPlan(planData);
+      });
 
-      // Save days & activities locally
+      // Save days & activities
       days.forEach(day => {
         const newDay = localPlanDays.add({ day_number: day.day_number, plan_id: newPlan.plan_id });
         day.activities.filter(a => a.title.trim()).forEach(act => {
           localActivities.add({ title: act.title.trim(), description: act.description.trim(), price: parseFloat(act.price) || 0, day_id: newDay.day_id });
         });
+      });
+
+      // Save images
+      images.forEach(img => {
+        localMedia.add(newPlan.plan_id, img.dataUrl, img.fileName);
       });
 
       addToast(form.status === 'Published' ? 'Trip published successfully! 🎉' : 'Trip saved as draft!');
@@ -183,7 +286,8 @@ export default function CreatePlan() {
         <div className="info-box" style={{ marginBottom: '1.5rem' }}>
           {step === 0 && <Step1 form={form} set={set} />}
           {step === 1 && <Step2 days={days} setDays={setDays} />}
-          {step === 2 && <Step3 form={form} days={days} />}
+          {step === 2 && <Step3Photos images={images} setImages={setImages} />}
+          {step === 3 && <Step4 form={form} days={days} images={images} />}
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>

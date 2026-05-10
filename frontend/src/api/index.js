@@ -119,6 +119,22 @@ export const localRatings = {
   },
 };
 
+export const localMedia = {
+  getByPlan: (planId) => lsGet('media').filter(m => m.plan_id === planId),
+  add: (planId, dataUrl, fileName) => {
+    const media = lsGet('media');
+    const newItem = { media_id: nextId(media, 'media_id'), plan_id: planId, file_path: dataUrl, file_name: fileName, type: 'image' };
+    lsSet('media', [...media, newItem]);
+    return newItem;
+  },
+  remove: (mediaId) => {
+    lsSet('media', lsGet('media').filter(m => m.media_id !== mediaId));
+  },
+  deleteByPlan: (planId) => {
+    lsSet('media', lsGet('media').filter(m => m.plan_id !== planId));
+  },
+};
+
 export const localNotifications = {
   getByUser: (userId) => lsGet('notifications').filter(n => n.user_id === userId).reverse(),
   add: (userId, message) => {
