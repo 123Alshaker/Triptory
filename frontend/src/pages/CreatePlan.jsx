@@ -71,16 +71,34 @@ function Step2({ days, setDays }) {
 
 function Step3Photos({ images, setImages }) {
   const [dragOver, setDragOver] = useState(false);
+  const [compressing, setCompressing] = useState(false);
 
-  const readFiles = (files) => {
-    Array.from(files).forEach(file => {
-      if (!file.type.startsWith('image/')) return;
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setImages(prev => [...prev, { dataUrl: e.target.result, fileName: file.name, size: file.size }]);
-      };
-      reader.readAsDataURL(file);
-    });
+  // Resize + compress image to JPEG, max 1024px wide, quality 0.75
+  // This keeps each image under ~150KB as base64
+  const compressImage = (file) => new Promise((resolve) => {
+    const img = new Image();
+    const objectUrl = URL.createObjectURL(file);
+    img.onload = () => {
+      const MAX = 1024;
+      let { width, height } = img;
+      if (width > MAX) { height = Math.round((height * MAX) / width); width = MAX; }
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+      URL.revokeObjectURL(objectUrl);
+      resolve({ dataUrl: canvas.toDataURL('image/jpeg', 0.75), fileName: file.name });
+    };
+    img.src = objectUrl;
+  });
+
+  const readFiles = async (files) => {
+    const imageFiles = Array.from(files).filter(f => f.type.startsWith('image/'));
+    if (!imageFiles.length) return;
+    setCompressing(true);
+    const compressed = await Promise.all(imageFiles.map(compressImage));
+    setImages(prev => [...prev, ...compressed]);
+    setCompressing(false);
   };
 
   const handleFileInput = (e) => readFiles(e.target.files);
@@ -114,11 +132,20 @@ function Step3Photos({ images, setImages }) {
             onChange={handleFileInput}
             style={{ display: 'none' }}
           />
-          <div className="upload-dropzone__icon">🖼️</div>
-          <div className="upload-dropzone__text">
-            <strong>Click to upload</strong> or drag and drop images here
-          </div>
-          <div className="upload-dropzone__hint">PNG, JPG, WEBP supported</div>
+          {compressing ? (
+            <>
+              <div className="spinner" style={{ width: '32px', height: '32px' }}></div>
+              <div className="upload-dropzone__text">Compressing images…</div>
+            </>
+          ) : (
+            <>
+              <div className="upload-dropzone__icon">🖼️</div>
+              <div className="upload-dropzone__text">
+                <strong>Click to upload</strong> or drag and drop images here
+              </div>
+              <div className="upload-dropzone__hint">PNG, JPG, WEBP — auto-compressed for storage</div>
+            </>
+          )}
         </label>
       </div>
 
@@ -250,10 +277,13 @@ export default function CreatePlan() {
         });
       });
 
-      // Save images
+      // Save images — null return means quota was exceeded for that image
+      let skipped = 0;
       images.forEach(img => {
-        localMedia.add(newPlan.plan_id, img.dataUrl, img.fileName);
+        const result = localMedia.add(newPlan.plan_id, img.dataUrl, img.fileName);
+        if (!result) skipped++;
       });
+      if (skipped > 0) addToast(`${skipped} image(s) skipped — storage full. Try fewer or smaller photos.`, 'error');
 
       addToast(form.status === 'Published' ? 'Trip published successfully! 🎉' : 'Trip saved as draft!');
       navigate(`/trips/${newPlan.plan_id}`);

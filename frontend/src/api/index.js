@@ -124,7 +124,13 @@ export const localMedia = {
   add: (planId, dataUrl, fileName) => {
     const media = lsGet('media');
     const newItem = { media_id: nextId(media, 'media_id'), plan_id: planId, file_path: dataUrl, file_name: fileName, type: 'image' };
-    lsSet('media', [...media, newItem]);
+    try {
+      lsSet('media', [...media, newItem]);
+    } catch (e) {
+      // Storage quota exceeded — skip storing this image silently
+      console.warn('Media storage quota exceeded, image skipped:', fileName);
+      return null;
+    }
     return newItem;
   },
   remove: (mediaId) => {
