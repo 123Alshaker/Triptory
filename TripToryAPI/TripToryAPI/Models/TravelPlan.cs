@@ -18,5 +18,7 @@ namespace TripToryAPI.Models
         public string status { get; set; }
 
         public int user_id { get; set; }
+
+        public string? notes { get; set; }
     }
 }

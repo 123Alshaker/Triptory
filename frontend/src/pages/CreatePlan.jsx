@@ -1,8 +1,18 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createPlan, localPlanDays, localActivities, localMedia } from '../api';
+import { createPlan, localPlanDays, localActivities, uploadMedia } from '../api';
 import { useAuth } from '../contexts/AuthContext';
 import { useToast } from '../contexts/ToastContext';
+
+// Convert a compressed data URL (from Step3Photos) back into a File for upload
+function dataUrlToFile(dataUrl, fileName) {
+  const [header, base64] = dataUrl.split(',');
+  const mime = header.match(/:(.*?);/)[1];
+  const binary = atob(base64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return new File([bytes], fileName, { type: mime });
+}
 
 const STEPS = ['Basic Info', 'Itinerary', 'Photos', 'Review & Publish'];
 
@@ -28,6 +38,16 @@ function Step1({ form, set }) {
           <option value="Published">Publish Now</option>
         </select>
         <span className="form-hint">You can change this later from My Plans</span>
+      </div>
+      <div className="form-group">
+        <label className="form-label">Notes (optional)</label>
+        <textarea
+          className="form-textarea"
+          placeholder="Tips, recommendations, or anything else travelers should know…"
+          value={form.notes}
+          onChange={e => set('notes', e.target.value)}
+          rows={4}
+        />
       </div>
     </div>
   );
@@ -192,6 +212,7 @@ function Step4({ form, days, images }) {
           <div><strong>Destination:</strong> {form.destination || '—'}</div>
           <div><strong>Budget:</strong> {form.total_price ? `${Number(form.total_price).toLocaleString()} SAR` : '—'}</div>
           <div><strong>Status:</strong> <span className={`badge ${form.status === 'Published' ? 'badge--green' : 'badge--gray'}`}>{form.status}</span></div>
+          {form.notes.trim() && <div><strong>Notes:</strong> {form.notes}</div>}
         </div>
       </div>
       <div className="info-box" style={{ marginBottom: '1rem' }}>
@@ -230,7 +251,7 @@ export default function CreatePlan() {
   const navigate = useNavigate();
 
   const [step, setStep] = useState(0);
-  const [form, setForm] = useState({ title: '', destination: '', total_price: '', status: 'Draft' });
+  const [form, setForm] = useState({ title: '', destination: '', total_price: '', status: 'Draft', notes: '' });
   const [days, setDays] = useState([]);
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -267,6 +288,7 @@ export default function CreatePlan() {
         total_price: parseFloat(form.total_price) || 0,
         status: form.status,
         user_id: user.user_id,
+        notes: form.notes.trim(),
       });
 
       // Save days & activities
@@ -277,13 +299,15 @@ export default function CreatePlan() {
         });
       });
 
-      // Save images — null return means quota was exceeded for that image
-      let skipped = 0;
-      images.forEach(img => {
-        const result = localMedia.add(newPlan.plan_id, img.dataUrl, img.fileName);
-        if (!result) skipped++;
-      });
-      if (skipped > 0) addToast(`${skipped} image(s) skipped — storage full. Try fewer or smaller photos.`, 'error');
+      // Upload images to the server and link them to this plan
+      if (images.length > 0) {
+        try {
+          const files = images.map(img => dataUrlToFile(img.dataUrl, img.fileName));
+          await uploadMedia(newPlan.plan_id, files);
+        } catch {
+          addToast('Trip saved, but photos failed to upload.', 'error');
+        }
+      }
 
       addToast(form.status === 'Published' ? 'Trip published successfully! 🎉' : 'Trip saved as draft!');
       navigate(`/trips/${newPlan.plan_id}`);

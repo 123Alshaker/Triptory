@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getPlanById, getAllUsers, localPlanDays, localActivities, localComments, localSavedPlans, localRatings, localNotifications, localMedia } from '../api';
+import { getPlanById, getAllUsers, getMediaByPlan, localPlanDays, localActivities, localComments, localSavedPlans, localRatings, localNotifications } from '../api';
 import { useAuth } from '../contexts/AuthContext';
 import { useToast } from '../contexts/ToastContext';
 
@@ -84,7 +84,8 @@ export default function TripDetail() {
       d.forEach(day => { am[day.day_id] = localActivities.getByDay(day.day_id); });
       setActivitiesMap(am);
       setComments(localComments.getByPlan(planId));
-      setImages(localMedia.getByPlan(planId));
+      const media = await getMediaByPlan(planId).catch(() => []);
+      setImages(media || []);
       setAvgRating(localRatings.avgScore(planId));
       if (user) {
         const r = localRatings.getUserRating(user.user_id, planId);
@@ -164,7 +165,7 @@ export default function TripDetail() {
         {/* Hero — first image or emoji fallback */}
         {images.length > 0 ? (
           <div className="trip-detail__hero" style={{ padding: 0, overflow: 'hidden', cursor: 'pointer' }} onClick={() => setLightbox(images[0])}>
-            <img src={images[0].file_path} alt={images[0].file_name}
+            <img src={images[0].file_path} alt="Trip cover"
               style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
         ) : (
@@ -205,7 +206,7 @@ export default function TripDetail() {
                 <div className="photo-gallery">
                   {images.map((img, idx) => (
                     <div key={img.media_id} className="photo-gallery__item" onClick={() => setLightbox(img)}>
-                      <img src={img.file_path} alt={img.file_name} className="photo-gallery__img" />
+                      <img src={img.file_path} alt={`Trip photo ${idx + 1}`} className="photo-gallery__img" />
                     </div>
                   ))}
                 </div>
@@ -221,6 +222,14 @@ export default function TripDetail() {
                 <Accordion key={day.day_id} day={day} activities={activitiesMap[day.day_id] || []} />
               ))}
             </div>
+
+            {/* Notes */}
+            {plan.notes && plan.notes.trim() && (
+              <div className="info-box" style={{ marginBottom: '1.5rem' }}>
+                <h3>📝 Notes</h3>
+                <p style={{ whiteSpace: 'pre-wrap' }}>{plan.notes}</p>
+              </div>
+            )}
 
             {/* Rate this trip */}
             <div className="info-box" style={{ marginBottom: '1.5rem' }}>
@@ -326,7 +335,7 @@ export default function TripDetail() {
       {lightbox && (
         <div className="lightbox" onClick={() => setLightbox(null)}>
           <button className="lightbox__close" onClick={() => setLightbox(null)}>✕</button>
-          <img src={lightbox.file_path} alt={lightbox.file_name} className="lightbox__img" onClick={e => e.stopPropagation()} />
+          <img src={lightbox.file_path} alt="Trip photo" className="lightbox__img" onClick={e => e.stopPropagation()} />
           {images.length > 1 && (
             <div className="lightbox__nav">
               <button onClick={e => { e.stopPropagation(); const idx = images.findIndex(i => i.media_id === lightbox.media_id); setLightbox(images[(idx - 1 + images.length) % images.length]); }}>‹</button>

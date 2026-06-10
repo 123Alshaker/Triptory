@@ -48,6 +48,29 @@ export function deletePlan(id) {
   return request(`/TravelPlans/${id}`, { method: 'DELETE' });
 }
 
+// ─── Media (uploaded trip photos) ────────────────────────────────────────────
+
+export async function uploadMedia(planId, files) {
+  const formData = new FormData();
+  formData.append('plan_id', planId);
+  files.forEach(file => formData.append('files', file));
+
+  const res = await fetch(`${BASE_URL}/Media/upload`, { method: 'POST', body: formData });
+
+  if (!res.ok) {
+    let msg = `Error ${res.status}`;
+    try { msg = await res.text(); } catch {}
+    throw new Error(msg || res.statusText);
+  }
+
+  const text = await res.text();
+  return text ? JSON.parse(text) : null;
+}
+
+export function getMediaByPlan(planId) {
+  return request(`/Media/plan/${planId}`);
+}
+
 // ─── Plan Days (localStorage fallback) ───────────────────────────────────────
 
 function lsKey(entity) { return `triptory_${entity}`; }

@@ -11,7 +11,7 @@ export default function EditPlan() {
   const { addToast } = useToast();
   const navigate = useNavigate();
 
-  const [form, setForm] = useState({ title: '', destination: '', total_price: '', status: 'Draft' });
+  const [form, setForm] = useState({ title: '', destination: '', total_price: '', status: 'Draft', notes: '' });
   const [days, setDays] = useState([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -21,7 +21,7 @@ export default function EditPlan() {
     Promise.all([getPlanById(planId)])
       .then(([plan]) => {
         if (!plan || plan.user_id !== user.user_id) { navigate('/my-plans'); return; }
-        setForm({ title: plan.title, destination: plan.destination, total_price: plan.total_price, status: plan.status });
+        setForm({ title: plan.title, destination: plan.destination, total_price: plan.total_price, status: plan.status, notes: plan.notes || '' });
         const d = localPlanDays.getByPlan(planId).sort((a, b) => a.day_number - b.day_number);
         setDays(d.map(day => ({ ...day, activities: localActivities.getByDay(day.day_id) })));
       })
@@ -52,6 +52,7 @@ export default function EditPlan() {
         total_price: parseFloat(form.total_price) || 0,
         status: form.status,
         user_id: user.user_id,
+        notes: form.notes.trim(),
       });
 
       days.forEach(day => {
@@ -103,6 +104,16 @@ export default function EditPlan() {
                 <option value="Draft">Draft</option>
                 <option value="Published">Published</option>
               </select>
+            </div>
+            <div className="form-group">
+              <label className="form-label">Notes (optional)</label>
+              <textarea
+                className="form-textarea"
+                placeholder="Tips, recommendations, or anything else travelers should know…"
+                value={form.notes}
+                onChange={e => set('notes', e.target.value)}
+                rows={4}
+              />
             </div>
           </div>
         </div>
